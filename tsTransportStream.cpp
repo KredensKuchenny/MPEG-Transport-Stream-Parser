@@ -185,12 +185,36 @@ void xTS_AdaptationField::Print() const
   std::cout << "  Splicing point flag: " << (int)m_SplicingPointFlag << std::endl;
   std::cout << "  Transport private data flag: " << (int)m_TransportPrivateDataFlag << std::endl;
   std::cout << "  Adaptation field extension flag: " << (int)m_AdaptationFieldExtensionFlag << std::endl;
-  std::cout << "  Program clock reference base: " << (int)m_ProgramClockReferenceBase << std::endl;
-  std::cout << "  Program clock reference extension: " << (int)m_ProgramClockReferenceExtension << std::endl;
-  std::cout << "  Program clock reference: " << (int)m_ProgramClockReference << " (Time=" << (float)m_ProgramClockReferenceTime << "s)" << std::endl;
-  std::cout << "  Original program clock reference base: " << (int)m_OriginalProgramClockReferenceBase << std::endl;
-  std::cout << "  Original program clock reference extension: " << (unsigned int)m_OriginalProgramClockReferenceExtension << " (Time=" << (float)m_OriginalProgramClockReferenceTime << "s)" << std::endl;
-  std::cout << "  Stuffing bytes: " << (int)m_NumStuffingBytes << std::endl;
+
+  if ((int)m_ProgramClockReferenceBase != 0)
+  {
+    std::cout << "  Program clock reference base: " << (int)m_ProgramClockReferenceBase << std::endl;
+  }
+
+  if ((int)m_ProgramClockReferenceExtension != 0)
+  {
+    std::cout << "  Program clock reference extension: " << (int)m_ProgramClockReferenceExtension << std::endl;
+  }
+
+  if ((int)m_ProgramClockReference != 0)
+  {
+    std::cout << "  Program clock reference: " << (int)m_ProgramClockReference << " (Time=" << (float)m_ProgramClockReferenceTime << "s)" << std::endl;
+  }
+
+  if ((int)m_OriginalProgramClockReferenceBase != 0)
+  {
+    std::cout << "  Original program clock reference base: " << (int)m_OriginalProgramClockReferenceBase << std::endl;
+  }
+
+  if ((unsigned int)m_OriginalProgramClockReferenceExtension != 0)
+  {
+    std::cout << "  Original program clock reference extension: " << (unsigned int)m_OriginalProgramClockReferenceExtension << " (Time=" << (float)m_OriginalProgramClockReferenceTime << "s)" << std::endl;
+  }
+
+  if ((int)m_NumStuffingBytes != 0)
+  {
+    std::cout << "  Stuffing bytes: " << (int)m_NumStuffingBytes << std::endl;
+  }
 }
 
 //=============================================================================================================================================================================
@@ -271,6 +295,7 @@ xPES_Assembler::eResult xPES_Assembler::AbsorbPacket(const uint8_t *TransportStr
             double timePTS = pts / 90000.0;
 
             std::cout << std::endl;
+            std::cout << "PTS:" << std::endl;
             std::cout << "  PTS value: " << pts << std::endl;
             std::cout << "  (Time=" << timePTS << "s)" << std::endl;
           }
@@ -302,6 +327,7 @@ xPES_Assembler::eResult xPES_Assembler::AbsorbPacket(const uint8_t *TransportStr
             double timePtsDiffDts = ptsDiffDts / 90000.0;
 
             std::cout << std::endl;
+            std::cout << "PTS and DTS:" << std::endl;
             std::cout << "  PTS value: " << pts << std::endl;
             std::cout << "  (Time=" << timePTS << "s)" << std::endl;
             std::cout << "  DTS value: " << dts << std::endl;
@@ -416,6 +442,7 @@ xPES_Assembler::eResult xPES_Assembler::AbsorbPacket(const uint8_t *TransportStr
             double timePTS = pts / 90000.0;
 
             std::cout << std::endl;
+            std::cout << "PTS:" << std::endl;
             std::cout << "  PTS value: " << pts << std::endl;
             std::cout << "  (Time=" << timePTS << "s)" << std::endl;
           }
@@ -447,6 +474,7 @@ xPES_Assembler::eResult xPES_Assembler::AbsorbPacket(const uint8_t *TransportStr
             double timePtsDiffDts = ptsDiffDts / 90000.0;
 
             std::cout << std::endl;
+            std::cout << "PTS and DTS:" << std::endl;
             std::cout << "  PTS value: " << pts << std::endl;
             std::cout << "  (Time=" << timePTS << "s)" << std::endl;
             std::cout << "  DTS value: " << dts << std::endl;
